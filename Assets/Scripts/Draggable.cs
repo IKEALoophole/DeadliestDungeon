@@ -4,6 +4,7 @@ using UnityEngine;
 public class Draggable : MonoBehaviour
 {
     private Vector3 offSet = Vector3.zero;
+    [SerializeField]
     private bool active = true;
     private Card cardScript;
 
@@ -29,7 +30,7 @@ public class Draggable : MonoBehaviour
     {
         if (!active)
             return;
-        Debug.Log("Mouse down on " + gameObject.name);
+        //Debug.Log("Mouse down on " + gameObject.name);
         var mouseScreenSpace = Input.mousePosition;
         var mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseScreenSpace);
         offSet = gameObject.transform.position - mouseWorldPos;
@@ -44,14 +45,11 @@ public class Draggable : MonoBehaviour
         gameObject.transform.position = mouseWorldPos + offSet;       
     }
 
-    void onMouseUp()
+    void OnMouseUp()
     {
         if (!active)
             return;
         Debug.Log("Mouse up on " + gameObject.name);
-        if (cardScript.tryPlaceCard())
-        {
-            active = false;
-        }
+        cardScript.cardManager.tryPlaceCard(cardScript);
     }
 }
