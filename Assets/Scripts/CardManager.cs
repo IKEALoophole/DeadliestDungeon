@@ -25,30 +25,45 @@ public class CardManager : MonoBehaviour
         {
             if (collider.tag == "tileDrop")
             {
-                card.placed = true;
-                card.transform.position = collider.transform.position;
+                
                 switch (collider.gameObject.name)
                 {
 
                     case "Ntrig":
-                        collider.transform.parent.GetComponent<Card>().nCard = card;
-                        card.sCard = collider.transform.parent.GetComponent<Card>();
-                        Debug.Log("Placed card " + card.name + " to the north of " + collider.transform.parent.name);
+                        if(!collider.transform.parent.GetComponent<Card>().nCard)
+                        {
+                            collider.transform.parent.GetComponent<Card>().nCard = card;
+                            card.sCard = collider.transform.parent.GetComponent<Card>();
+                            card.placed = true;
+                            card.transform.position = collider.transform.position;
+                        }
                         break;
                     case "Strig":
-                        collider.transform.parent.GetComponent<Card>().sCard = card;
-                        card.nCard = collider.transform.parent.GetComponent<Card>();
-                        Debug.Log("Placed card " + card.name + " to the south of " + collider.transform.parent.name);
+                        if(!collider.transform.parent.GetComponent<Card>().sCard)
+                        {
+                            collider.transform.parent.GetComponent<Card>().sCard = card;
+                            card.nCard = collider.transform.parent.GetComponent<Card>();
+                            card.placed = true;
+                            card.transform.position = collider.transform.position;
+                        }
                         break;
                     case "Etrig":
-                        collider.transform.parent.GetComponent<Card>().eCard = card;
-                        card.wCard = collider.transform.parent.GetComponent<Card>();
-                        Debug.Log("Placed card " + card.name + " to the east of " + collider.transform.parent.name);
+                        if(!collider.transform.parent.GetComponent<Card>().eCard)
+                        {
+                            collider.transform.parent.GetComponent<Card>().eCard = card;
+                            card.wCard = collider.transform.parent.GetComponent<Card>();
+                            card.placed = true;
+                            card.transform.position = collider.transform.position;
+                        }
                         break;
                     case "Wtrig":
-                        collider.transform.parent.GetComponent<Card>().wCard = card;
-                        card.eCard = collider.transform.parent.GetComponent<Card>();
-                        Debug.Log("Placed card " + card.name + " to the west of " + collider.transform.parent.name);
+                        if(!collider.transform.parent.GetComponent<Card>().wCard)
+                        {
+                            collider.transform.parent.GetComponent<Card>().wCard = card;
+                            card.eCard = collider.transform.parent.GetComponent<Card>();
+                            card.placed = true;
+                            card.transform.position = collider.transform.position;
+                        }
                         break;
                     default:
                         Debug.LogError("Tile drop trigger " + collider.gameObject.name + " does not have a valid name.");
