@@ -34,6 +34,11 @@ public class Card : MonoBehaviour
         deadliness += amount;
     }
 
+    public void Destroy()
+    {
+        Destroy(this.gameObject);
+    }
+
     /*public List<GameObject> GetTriggers()
     {
         List<GameObject> triggers = new List<GameObject>();

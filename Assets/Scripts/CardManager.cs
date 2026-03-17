@@ -27,27 +27,37 @@ public class CardManager : MonoBehaviour
             {
                 card.placed = true;
                 card.transform.position = collider.transform.position;
-                switch (collider.name)
+                switch (collider.gameObject.name)
                 {
-                    case "NTtrig":
-                        card.nCard = collider.transform.parent.GetComponent<Card>();
-                        break;
-                    case "STtrig":
+
+                    case "Ntrig":
+                        collider.transform.parent.GetComponent<Card>().nCard = card;
                         card.sCard = collider.transform.parent.GetComponent<Card>();
+                        Debug.Log("Placed card " + card.name + " to the north of " + collider.transform.parent.name);
                         break;
-                    case "ETtrig":
-                        card.eCard = collider.transform.parent.GetComponent<Card>();
+                    case "Strig":
+                        collider.transform.parent.GetComponent<Card>().sCard = card;
+                        card.nCard = collider.transform.parent.GetComponent<Card>();
+                        Debug.Log("Placed card " + card.name + " to the south of " + collider.transform.parent.name);
                         break;
-                    case "WTtrig":
+                    case "Etrig":
+                        collider.transform.parent.GetComponent<Card>().eCard = card;
                         card.wCard = collider.transform.parent.GetComponent<Card>();
+                        Debug.Log("Placed card " + card.name + " to the east of " + collider.transform.parent.name);
+                        break;
+                    case "Wtrig":
+                        collider.transform.parent.GetComponent<Card>().wCard = card;
+                        card.eCard = collider.transform.parent.GetComponent<Card>();
+                        Debug.Log("Placed card " + card.name + " to the west of " + collider.transform.parent.name);
+                        break;
+                    default:
+                        Debug.LogError("Tile drop trigger " + collider.gameObject.name + " does not have a valid name.");
                         break;
                 }
-                Debug.Log("Placed card " + card.name + " on " + collider.gameObject.name);
                 return true;
             }
         }
         Debug.Log("Could not place card " + card.name + " at position " + cardPos);
-        //Debug.Log("Collider at position: " + (collider != null ? collider.gameObject.name : "None"));
         return false;
     }
 
