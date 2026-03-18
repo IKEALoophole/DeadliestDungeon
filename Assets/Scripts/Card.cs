@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Card : MonoBehaviour
@@ -32,6 +33,11 @@ public class Card : MonoBehaviour
     public void addDeadliness(int amount)
     {
         deadliness += amount;
+    }
+
+    public int GetDeadliness()
+    {
+        return deadliness;
     }
 
     public void Destroy()

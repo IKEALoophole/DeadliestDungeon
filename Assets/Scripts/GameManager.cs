@@ -1,8 +1,26 @@
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     private int deadliness = 0;
+    public static GameManager Instance;
+
+     void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    [SerializeField]
+    private TextMeshProUGUI deadlinessText; 
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -14,5 +32,12 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public int updateDeadliness(int amount)
+    {
+        deadliness += amount;
+        deadlinessText.text = "Deadliness: " + deadliness;
+        return deadliness;
     }
 }
