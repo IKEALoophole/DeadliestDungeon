@@ -5,7 +5,8 @@ using UnityEngine;
 public class CardManager : MonoBehaviour
 {
     private Card currentEntrace;
-    private List<Card> cards;
+    private List<Card> playedCards;
+    private Deck playerDeck;
 
     public int FewestRoomsFromEntrace(Card card)
     {

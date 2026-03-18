@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -39,5 +40,10 @@ public class GameManager : MonoBehaviour
         deadliness += amount;
         deadlinessText.text = "Deadliness: " + deadliness;
         return deadliness;
+    }
+
+    public void SetScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }
