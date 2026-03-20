@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     private int deadliness = 0;
     public static GameManager Instance;
+    private IGameState currentState;
 
      void Awake()
     {
@@ -26,7 +27,7 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        //SetState(new MainMenuState());
     }
 
     // Update is called once per frame
@@ -45,5 +46,15 @@ public class GameManager : MonoBehaviour
     public void SetScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void SetState(IGameState newState)
+    {
+        if (currentState != null)
+        {
+            currentState.OnExit();
+        }
+        currentState = newState;
+        currentState.OnEnter();
     }
 }

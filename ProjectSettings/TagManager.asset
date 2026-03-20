@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - tileDrop
+  - DoorSeg
   layers:
   - Default
   - TransparentFX
