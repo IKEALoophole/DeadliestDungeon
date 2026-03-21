@@ -49,7 +49,6 @@ public class Draggable : MonoBehaviour
     {
         if (!active)
             return;
-        Debug.Log("Mouse up on " + gameObject.name);
         cardScript.cardManager.tryPlaceCard(cardScript);
     }
 }

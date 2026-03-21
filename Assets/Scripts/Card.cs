@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Card : MonoBehaviour
@@ -8,6 +9,11 @@ public class Card : MonoBehaviour
     public CardManager cardManager;
     [SerializeField]
     private int deadliness = 0;
+
+    public GameObject nDoor;
+    public GameObject sDoor;
+    public GameObject wDoor;
+    public GameObject eDoor;
 
     public Card nCard;
     public Card sCard;
@@ -27,16 +33,45 @@ public class Card : MonoBehaviour
         Hall = 64
     }
 
+    [Flags]
+    public enum DoorDirection
+    {
+        None = 0,
+        North = 1,
+        South = 2,
+        East = 4,
+        West = 8
+    }
+
     public CardType types;
+    public DoorDirection doorDirections;
 
     public void addDeadliness(int amount)
     {
         deadliness += amount;
     }
 
+    public int GetDeadliness()
+    {
+        return deadliness;
+    }
+
     public void Destroy()
     {
         Destroy(this.gameObject);
+    }
+
+    public void UpdateDoors()
+    {
+        nDoor.SetActive(!doorDirections.HasFlag(DoorDirection.North));
+        sDoor.SetActive(!doorDirections.HasFlag(DoorDirection.South));
+        eDoor.SetActive(!doorDirections.HasFlag(DoorDirection.East));
+        wDoor.SetActive(!doorDirections.HasFlag(DoorDirection.West));
+    }
+
+    public void Start()
+    {
+        UpdateDoors();
     }
 
     /*public List<GameObject> GetTriggers()

@@ -5,7 +5,8 @@ using UnityEngine;
 public class CardManager : MonoBehaviour
 {
     private Card currentEntrace;
-    private List<Card> cards;
+    private List<Card> playedCards;
+    private Deck playerDeck;
 
     public int FewestRoomsFromEntrace(Card card)
     {
@@ -25,50 +26,64 @@ public class CardManager : MonoBehaviour
         {
             if (collider.tag == "tileDrop")
             {
-                
+                Card colliderCard = collider.transform.root.GetComponent<Card>();
+                Debug.Log("Trying to place card " + card.name + " on " + colliderCard.name + " at position " + cardPos);
+
                 switch (collider.gameObject.name)
                 {
-
                     case "Ntrig":
-                        if(!collider.transform.parent.GetComponent<Card>().nCard)
+                        if(colliderCard.nCard == null && colliderCard.doorDirections.HasFlag(Card.DoorDirection.North)
+                        && card.doorDirections.HasFlag(Card.DoorDirection.South))
                         {
-                            collider.transform.parent.GetComponent<Card>().nCard = card;
-                            card.sCard = collider.transform.parent.GetComponent<Card>();
+                            Debug.Log("Great Success");
+                            colliderCard.nCard = card;
+                            card.sCard = colliderCard;
                             card.placed = true;
                             card.transform.position = collider.transform.position;
                         }
+                        Debug.Log("BAD SUCCESS");
                         break;
                     case "Strig":
-                        if(!collider.transform.parent.GetComponent<Card>().sCard)
+                        if(colliderCard.sCard == null && colliderCard.doorDirections.HasFlag(Card.DoorDirection.South)
+                        && card.doorDirections.HasFlag(Card.DoorDirection.North) && colliderCard.placed)
                         {
-                            collider.transform.parent.GetComponent<Card>().sCard = card;
-                            card.nCard = collider.transform.parent.GetComponent<Card>();
+                            Debug.Log("Great Success");
+                            colliderCard.sCard = card;
+                            card.nCard = colliderCard;
                             card.placed = true;
                             card.transform.position = collider.transform.position;
                         }
+                        Debug.Log("BAD SUCCESS");
                         break;
                     case "Etrig":
-                        if(!collider.transform.parent.GetComponent<Card>().eCard)
+                        if(colliderCard.eCard == null && colliderCard.doorDirections.HasFlag(Card.DoorDirection.East)
+                        && card.doorDirections.HasFlag(Card.DoorDirection.West) && colliderCard.placed)
                         {
-                            collider.transform.parent.GetComponent<Card>().eCard = card;
-                            card.wCard = collider.transform.parent.GetComponent<Card>();
+                            Debug.Log("Great Success");
+                            colliderCard.eCard = card;
+                            card.wCard = colliderCard;
                             card.placed = true;
                             card.transform.position = collider.transform.position;
                         }
+                        Debug.Log("BAD SUCCESS");
                         break;
                     case "Wtrig":
-                        if(!collider.transform.parent.GetComponent<Card>().wCard)
+                        if(colliderCard.wCard == null && colliderCard.doorDirections.HasFlag(Card.DoorDirection.West)
+                        && card.doorDirections.HasFlag(Card.DoorDirection.East) && colliderCard.placed)
                         {
-                            collider.transform.parent.GetComponent<Card>().wCard = card;
-                            card.eCard = collider.transform.parent.GetComponent<Card>();
+                            Debug.Log("Great Success");
+                            colliderCard.wCard = card;
+                            card.eCard = colliderCard;
                             card.placed = true;
                             card.transform.position = collider.transform.position;
                         }
+                        Debug.Log("BAD SUCCESS");
                         break;
                     default:
                         Debug.LogError("Tile drop trigger " + collider.gameObject.name + " does not have a valid name.");
                         break;
                 }
+                GameManager.Instance.updateDeadliness(card.GetDeadliness());
                 return true;
             }
         }
