@@ -653,6 +653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196ff11596cf9bd46a457e134f45a85d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardManager
+  playerDeck: {fileID: 1251272313}
   playNextCard: 0
 --- !u!114 &879552521
 MonoBehaviour:
@@ -792,7 +793,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Deck
   deck:
-  - {fileID: 8374892430951920405, guid: 0879095f977784843be47b303543d734, type: 3}
+  - {fileID: 2119359368277001111, guid: 50a8c8432eac3144088201f2cf38f318, type: 3}
+  - {fileID: 2119359368277001111, guid: 50a8c8432eac3144088201f2cf38f318, type: 3}
+  - {fileID: 2119359368277001111, guid: 50a8c8432eac3144088201f2cf38f318, type: 3}
+  - {fileID: 2119359368277001111, guid: 50a8c8432eac3144088201f2cf38f318, type: 3}
   - {fileID: 2119359368277001111, guid: 50a8c8432eac3144088201f2cf38f318, type: 3}
   - {fileID: 2119359368277001111, guid: 50a8c8432eac3144088201f2cf38f318, type: 3}
 --- !u!212 &1251272314

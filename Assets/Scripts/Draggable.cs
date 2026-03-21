@@ -34,6 +34,10 @@ public class Draggable : MonoBehaviour
         var mouseScreenSpace = Input.mousePosition;
         var mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseScreenSpace);
         offSet = gameObject.transform.position - mouseWorldPos;
+        // if (Input.GetKeyDown(KeyCode.E))
+        // {
+        //     cardScript.Rotate();
+        // }
     }
 
     void OnMouseDrag()
@@ -43,6 +47,10 @@ public class Draggable : MonoBehaviour
         var mouseScreenSpace = Input.mousePosition;
         var mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseScreenSpace);
         gameObject.transform.position = mouseWorldPos + offSet;       
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            cardScript.Rotate();
+        }
     }
 
     void OnMouseUp()

@@ -76,7 +76,27 @@ public class Card : MonoBehaviour
 
     public void Awake()
     {
-        
+        cardManager = GameObject.Find("Manager").GetComponent<CardManager>();
+    }
+
+
+    public void Rotate()
+    {
+        // Rotate the card 90 degrees clockwise
+
+        // Update the door directions
+        DoorDirection newDoorDirections = DoorDirection.None;
+        if (doorDirections.HasFlag(DoorDirection.North))
+            newDoorDirections |= DoorDirection.East;
+        if (doorDirections.HasFlag(DoorDirection.East))
+            newDoorDirections |= DoorDirection.South;
+        if (doorDirections.HasFlag(DoorDirection.South))
+            newDoorDirections |= DoorDirection.West;
+        if (doorDirections.HasFlag(DoorDirection.West))
+            newDoorDirections |= DoorDirection.North;
+
+        doorDirections = newDoorDirections;
+        UpdateDoors();
     }
 
     /*public List<GameObject> GetTriggers()
