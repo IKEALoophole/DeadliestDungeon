@@ -1,22 +1,22 @@
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
-    public ArrayList deck = new ArrayList();
+    public List<Card> deck = new List<Card>();
 
-    public void AddCard(int card)
+    public void AddCard(Card card)
     {
         deck.Add(card);
     }
 
-    public int PopCard()
+    public Card PopCard()
     {
         if (deck.Count > 0)
         {
-            int card = (int)deck[0];
-            deck.RemoveAt(0);
+            Card card = deck[deck.Count - 1];
+            deck.RemoveAt(deck.Count - 1);
             return card;
         }
         else

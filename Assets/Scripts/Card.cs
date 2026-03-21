@@ -74,6 +74,11 @@ public class Card : MonoBehaviour
         UpdateDoors();
     }
 
+    public void Awake()
+    {
+        
+    }
+
     /*public List<GameObject> GetTriggers()
     {
         List<GameObject> triggers = new List<GameObject>();

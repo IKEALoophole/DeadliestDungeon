@@ -6,7 +6,11 @@ public class CardManager : MonoBehaviour
 {
     private Card currentEntrace;
     private List<Card> playedCards;
+    [SerializeField]
     private Deck playerDeck;
+
+    //temp
+    public bool playNextCard = false;
 
     public int FewestRoomsFromEntrace(Card card)
     {
@@ -89,6 +93,21 @@ public class CardManager : MonoBehaviour
         }
         Debug.Log("Could not place card " + card.name + " at position " + cardPos);
         return false;
+    }
+
+
+    public void PlayCard()
+    {
+        Instantiate(playerDeck.PopCard(), new Vector3(0, 0, 0), Quaternion.identity);
+    }
+
+    public void Update()
+    {
+        if(playNextCard)
+        {
+            PlayCard();
+            playNextCard = false;
+        }
     }
 
     public void AddDeadlinessToCard(Card card, int amount)
