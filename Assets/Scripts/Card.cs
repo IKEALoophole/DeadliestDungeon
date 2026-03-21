@@ -79,6 +79,8 @@ public class Card : MonoBehaviour
         cardManager = GameObject.Find("Manager").GetComponent<CardManager>();
     }
 
+    
+
 
     public void Rotate()
     {
