@@ -15,6 +15,11 @@ public class Card : MonoBehaviour
     public GameObject wDoor;
     public GameObject eDoor;
 
+    public GameObject nWall;
+    public GameObject sWall;
+    public GameObject wWall;
+    public GameObject eWall;
+
     public Card nCard;
     public Card sCard;
     public Card eCard;
@@ -63,10 +68,14 @@ public class Card : MonoBehaviour
 
     public void UpdateDoors()
     {
-        nDoor.SetActive(!doorDirections.HasFlag(DoorDirection.North));
-        sDoor.SetActive(!doorDirections.HasFlag(DoorDirection.South));
-        eDoor.SetActive(!doorDirections.HasFlag(DoorDirection.East));
-        wDoor.SetActive(!doorDirections.HasFlag(DoorDirection.West));
+        nDoor.SetActive(doorDirections.HasFlag(DoorDirection.North));
+        sDoor.SetActive(doorDirections.HasFlag(DoorDirection.South));
+        eDoor.SetActive(doorDirections.HasFlag(DoorDirection.East));
+        wDoor.SetActive(doorDirections.HasFlag(DoorDirection.West));
+        nWall.SetActive(!doorDirections.HasFlag(DoorDirection.North));
+        sWall.SetActive(!doorDirections.HasFlag(DoorDirection.South));
+        eWall.SetActive(!doorDirections.HasFlag(DoorDirection.East));
+        wWall.SetActive(!doorDirections.HasFlag(DoorDirection.West));
     }
 
     public void Start()

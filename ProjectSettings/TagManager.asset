@@ -6,6 +6,7 @@ TagManager:
   tags:
   - tileDrop
   - DoorSeg
+  - wall
   layers:
   - Default
   - TransparentFX
