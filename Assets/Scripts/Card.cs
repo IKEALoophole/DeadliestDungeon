@@ -12,7 +12,11 @@ public class Card : MonoBehaviour
     [SerializeField]
     private TMPro.TextMeshProUGUI cardNameText;
     [SerializeField]
+    private TMPro.TextMeshProUGUI cardDescriptionText;
+    [SerializeField]
     private String cardName;
+    [SerializeField]
+    private String cardDescription;
 
     public GameObject nDoor;
     public GameObject sDoor;
@@ -87,6 +91,8 @@ public class Card : MonoBehaviour
         UpdateDoors();
         if (cardNameText != null)
             cardNameText.text = cardName;
+        if (cardDescriptionText != null)
+            cardDescriptionText.text = cardDescription;
     }
 
     public void Awake()
