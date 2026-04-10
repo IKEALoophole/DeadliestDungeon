@@ -57,6 +57,6 @@ public class Draggable : MonoBehaviour
     {
         if (!active)
             return;
-        cardScript.cardManager.tryPlaceCard(cardScript);
+        cardScript.Play();
     }
 }

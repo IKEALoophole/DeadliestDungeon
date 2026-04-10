@@ -6,7 +6,6 @@ using UnityEngine;
 public class Card : MonoBehaviour
 {
     public bool placed = false;
-    public CardManager cardManager;
     [SerializeField]
     private int deadliness = 0;
     [SerializeField]
@@ -59,6 +58,10 @@ public class Card : MonoBehaviour
     public CardType types;
     public DoorDirection doorDirections;
 
+    public event Action onPlaced;
+
+    public List<Ability> abilities = new List<Ability>();
+
     public void addDeadliness(int amount)
     {
         deadliness += amount;
@@ -97,11 +100,17 @@ public class Card : MonoBehaviour
 
     public void Awake()
     {
-        cardManager = GameObject.Find("Manager").GetComponent<CardManager>();
+        GameManager.CardManager = GameObject.Find("Manager").GetComponent<CardManager>();
     }
 
     
-
+    public void Play()
+    {
+        if (GameManager.CardManager.tryPlaceCard(this))
+        {
+            onPlaced?.Invoke();
+        }
+    }
 
     public void Rotate()
     {

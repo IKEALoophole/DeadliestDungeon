@@ -6,10 +6,12 @@ public class GameManager : MonoBehaviour
 {
     private int deadliness = 0;
     public static GameManager Instance;
+    public static CardManager CardManager;
     private IGameState currentState;
 
      void Awake()
     {
+        CardManager = GetComponent<CardManager>();
         if (Instance == null)
         {
             Instance = this;

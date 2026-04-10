@@ -87,7 +87,6 @@ public class CardManager : MonoBehaviour
                         Debug.LogError("Tile drop trigger " + collider.gameObject.name + " does not have a valid name.");
                         break;
                 }
-                GameManager.Instance.updateDeadliness(card.GetDeadliness());
                 return true;
             }
         }
@@ -113,5 +112,6 @@ public class CardManager : MonoBehaviour
     public void AddDeadlinessToCard(Card card, int amount)
     {
         card.addDeadliness(amount);
+        GameManager.Instance.updateDeadliness(amount);
     }
 }
