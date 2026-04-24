@@ -1,24 +1,25 @@
 using System;
 
-public class OnPlayedImpulse : IImpulse
+public class OnPlayedImpulse : ImpulseBase
 {
     private Card owner;
     private Action onTriggered;
 
-    public OnPlayedImpulse(Card owner)
+    public void Awake()
     {
-        this.owner = owner;
+        this.owner = transform.root.GetComponent<Card>();
     }
 
-    public void Arm(Action onTriggered)
+    public override void Arm(Action onTriggered)
     {
         this.onTriggered = onTriggered;
         owner.onPlaced += onTriggered;
     }
 
-    public void Disarm()
+    public override void Disarm()
     {
         owner.onPlaced -= onTriggered;
         onTriggered = null;
     }
+
 }

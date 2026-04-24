@@ -1,12 +1,13 @@
 using UnityEngine;
 
-public class AddDeadlinessAbility : MonoBehaviour, IAction
+public class AddDeadlinessAbility : ActionBase
 {
     public int amount;
 
-    public void DoAction()
+    public override void DoAction()
     {
-        GameManager.CardManager.AddDeadlinessToCard(GetComponentInParent<Card>(), amount);
+        print("Doing ABILIRTY");
+        GameManager.CardManager.AddDeadlinessToCard(transform.root.GetComponent<Card>(), amount);
     }
 
 }

@@ -57,10 +57,10 @@ public class Card : MonoBehaviour
 
     public CardType types;
     public DoorDirection doorDirections;
+    public List<Ability> abilities = new List<Ability>();
 
     public event Action onPlaced;
 
-    public List<Ability> abilities = new List<Ability>();
 
     public void addDeadliness(int amount)
     {
@@ -89,6 +89,11 @@ public class Card : MonoBehaviour
         wWall.SetActive(!doorDirections.HasFlag(DoorDirection.West));
     }
 
+    void Update()
+    {
+        
+    }
+
     public void Start()
     {
         UpdateDoors();
@@ -96,11 +101,23 @@ public class Card : MonoBehaviour
             cardNameText.text = cardName;
         if (cardDescriptionText != null)
             cardDescriptionText.text = cardDescription;
+        foreach (Ability ability in abilities)
+        {
+            ability.Init();
+        }
     }
 
     public void Awake()
     {
         GameManager.CardManager = GameObject.Find("Manager").GetComponent<CardManager>();
+    }
+
+    void OnDestroy()
+    {
+        foreach (Ability ability in abilities)
+        {
+            ability.Cleanup();
+        }
     }
 
     

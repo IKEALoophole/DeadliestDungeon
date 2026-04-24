@@ -2,26 +2,27 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ability : MonoBehaviour
+public class Ability: MonoBehaviour
 {
-    public List<ICondition> conditions  = new List<ICondition>();
-    public List<IAction> actions = new List<IAction>();
+    public List<ConditionBase> conditions  = new List<ConditionBase>();
+    public List<ActionBase> actions = new List<ActionBase>();
 
-    public IImpulse impulse;
+    public ImpulseBase impulse;
 
-    void Start()
+    public void Init()
     {
         impulse?.Arm(TryActivate);
     }
 
-    void OnDestroy()
+    public void Cleanup()
     {
         impulse?.Disarm();
     }
 
     public void TryActivate()
     {
-        foreach (ICondition condition in conditions)
+        print("Trying to activate abilitiesses");
+        foreach (ConditionBase condition in conditions)
         {
             if (!condition.IsMet())
             {
@@ -29,7 +30,7 @@ public class Ability : MonoBehaviour
             }
         }
 
-        foreach (IAction action in actions)
+        foreach (ActionBase action in actions)
         {
             action.DoAction();
         }
